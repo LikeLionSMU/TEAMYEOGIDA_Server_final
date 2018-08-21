@@ -1,10 +1,24 @@
 var Sequelize = require('Sequelize');
+// var sequelize = new Sequelize('yeogida','root','jihae',
+//   {
+//     // 'host' : 'yeogida.cbdgg8cil0ro.ap-southeast-1.rds.amazonaws.com',
+//     host: 'localhost',
+//     dialect: 'mysql'
+//   }
+// );
 var sequelize = new Sequelize('yeogida','moonsun','201611070',
   {
     'host' : 'yeogida.cbdgg8cil0ro.ap-southeast-1.rds.amazonaws.com',
-    'dialect' : 'mysql'
-  }
-);
+    'dialect' : 'mysql',
+    'pool': {
+      max: 5,
+      min: 0,
+      idle: 20000,
+      acquire: 20000,
+      maxIdleTime: 120000
+}
+});
+
 var profile=sequelize.define('profile',{
   personpid: {
     type:Sequelize.INTEGER,
@@ -27,7 +41,7 @@ var productinfo=sequelize.define('productinfo', {
       primaryKey: true,
       autoIncrement: true,
   },
-  url: Sequelize.STRING, //사진이미지 경로텍스트
+  productimage: Sequelize.STRING, //사진이미지 경로텍스트
   productname: Sequelize.STRING, //판매 펜션이름
   productaddress_x : Sequelize.FLOAT,// 주소 x좌표
   productaddress_y : Sequelize.FLOAT,
@@ -39,7 +53,10 @@ var productinfo=sequelize.define('productinfo', {
   productprice :Sequelize.INTEGER,
   producthit: Sequelize.INTEGER,
   checker : Sequelize.BOOLEAN,
-  personpid: Sequelize.INTEGER
+  personpid: Sequelize.INTEGER,
+  text:Sequelize.TEXT,
+  productphone:Sequelize.INTEGER,
+
   //hotelphonenumber: Sequelize.STRING//펜션전번
 }, {
     timestamps:false,
