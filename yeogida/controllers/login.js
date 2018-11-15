@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
+var multer = require('multer');
+var upload = multer();
 
-var loginModel = require('../models/login');
-
-router.post('/',  function(req,res,next){
+router.post('/',upload.fields([]),function(req,res,next){
+  var loginModel = require('../models/login');
 
   // 로그인 정보 받아오기
   var login_info = req.body;

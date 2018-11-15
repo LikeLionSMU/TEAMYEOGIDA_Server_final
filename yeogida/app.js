@@ -12,8 +12,9 @@ app.use('/',require('./controllers/main'));
 app.use('/product',require('./controllers/product'));
 app.use('/choice',require('./controllers/choice'));
 app.use('/search',require('./controllers/search'));
-app.use('/sold',require('./controllers/sold'));
+app.use('/purchase',require('./controllers/purchase'));
 app.use('/sell',require('./controllers/sell'));
+app.use('/chat',require('./controllers/chatting'));
 
 
 /*
